@@ -1,0 +1,236 @@
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Georgia',serif;background:var(--color-background-primary);color:var(--color-text-primary)}
+.planner{max-width:900px;margin:0 auto;padding:1.5rem;font-size:13px}
+h1{text-align:center;font-size:2rem;font-weight:700;letter-spacing:4px;margin-bottom:4px;font-family:'Georgia',serif}
+.subtitle{text-align:center;font-size:11px;letter-spacing:3px;color:var(--color-text-secondary);margin-bottom:1.5rem;display:flex;align-items:center;justify-content:center;gap:8px}
+.subtitle::before,.subtitle::after{content:'';flex:1;height:0.5px;background:var(--color-border-secondary)}
+.top-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-bottom:1.5rem}
+.box{border:0.5px solid var(--color-border-secondary);padding:12px;border-radius:4px}
+.box-title{text-align:center;font-size:10px;letter-spacing:2px;font-weight:700;border-bottom:0.5px solid var(--color-border-tertiary);padding-bottom:8px;margin-bottom:10px}
+.obj-item{display:flex;align-items:center;gap:8px;margin-bottom:8px;cursor:pointer;user-select:none}
+.obj-item input[type=checkbox]{width:14px;height:14px;cursor:pointer;accent-color:#333}
+.obj-item label{cursor:pointer;font-size:12px}
+.como-item{display:flex;align-items:center;gap:10px;margin-bottom:10px;font-size:12px}
+.como-icon{font-size:18px;width:24px;text-align:center}
+.boas li{margin-bottom:5px;font-size:12px;list-style:none;padding-left:8px;position:relative}
+.boas li::before{content:'•';position:absolute;left:0}
+.section-title{text-align:center;font-size:11px;letter-spacing:3px;font-weight:700;margin:1.2rem 0 0.8rem;display:flex;align-items:center;justify-content:center;gap:8px}
+.section-title::before,.section-title::after{content:'';flex:1;height:0.5px;background:var(--color-border-secondary)}
+.week-grid{display:grid;grid-template-columns:repeat(5,1fr);border:0.5px solid var(--color-border-secondary);margin-bottom:8px}
+.day-col{border-right:0.5px solid var(--color-border-secondary)}
+.day-col:last-child{border-right:none}
+.day-header{text-align:center;font-size:10px;letter-spacing:2px;font-weight:700;padding:6px;border-bottom:0.5px solid var(--color-border-secondary);background:var(--color-background-secondary)}
+.task-block{padding:8px;border-bottom:0.5px solid var(--color-border-tertiary);cursor:pointer;transition:background 0.15s}
+.task-block:last-child{border-bottom:none}
+.task-block:hover{background:var(--color-background-secondary)}
+.task-block.done{opacity:0.5;text-decoration:line-through}
+.task-title{font-weight:700;font-size:11px;margin-bottom:4px}
+.task-time{font-weight:400;font-style:italic;color:var(--color-text-secondary)}
+.task-items{list-style:none;padding-left:4px}
+.task-items li{font-size:11px;color:var(--color-text-secondary);padding-left:8px;position:relative;margin-bottom:2px}
+.task-items li::before{content:'•';position:absolute;left:0}
+.weekend-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:1.2rem}
+.weekend-box{border:0.5px solid var(--color-border-secondary);padding:12px;border-radius:4px}
+.weekend-title{text-align:center;font-size:10px;letter-spacing:2px;font-weight:700;margin-bottom:10px}
+.wk-task{margin-bottom:8px}
+.wk-task-title{font-weight:700;font-size:12px;cursor:pointer}
+.wk-task-title:hover{text-decoration:underline}
+.wk-task.done .wk-task-title{text-decoration:line-through;opacity:0.5}
+.wk-task ul{list-style:none;padding-left:8px;margin-top:3px}
+.wk-task ul li{font-size:11px;color:var(--color-text-secondary);position:relative;padding-left:8px}
+.wk-task ul li::before{content:'•';position:absolute;left:0}
+.bottom-grid{display:grid;grid-template-columns:1fr 1fr 1.2fr;gap:8px;margin-bottom:1.2rem}
+.crono-step{display:flex;align-items:flex-start;gap:8px;margin-bottom:12px}
+.step-num{width:26px;height:26px;border-radius:50%;background:var(--color-background-secondary);border:0.5px solid var(--color-border-secondary);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:12px;flex-shrink:0}
+.step-text{font-size:12px}
+.step-text strong{display:block;font-weight:700}
+.meta-row{display:flex;justify-content:space-between;align-items:center;padding:5px 0;border-bottom:0.5px solid var(--color-border-tertiary);font-size:11px}
+.meta-row:last-child{border-bottom:none}
+.meta-prog{width:80px;height:6px;background:var(--color-background-secondary);border-radius:3px;overflow:hidden;cursor:pointer}
+.meta-fill{height:100%;background:#555;border-radius:3px;transition:width 0.3s}
+.progress-table{width:100%;border-collapse:collapse;font-size:10px}
+.progress-table th{text-align:center;padding:4px 2px;font-weight:700;letter-spacing:1px;border-bottom:0.5px solid var(--color-border-secondary)}
+.progress-table td{text-align:center;padding:4px 2px;border-bottom:0.5px solid var(--color-border-tertiary)}
+.progress-table td:first-child{text-align:left;font-size:11px}
+.prog-check{width:14px;height:14px;cursor:pointer;accent-color:#333}
+.reflect-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.reflect-item{margin-bottom:10px}
+.reflect-item label{font-size:11px;color:var(--color-text-secondary);display:block;margin-bottom:4px}
+.reflect-item textarea,.notes-area{width:100%;border:none;border-bottom:0.5px solid var(--color-border-secondary);background:transparent;font-family:inherit;font-size:12px;color:var(--color-text-primary);resize:none;outline:none;padding:2px 0;line-height:1.6}
+.notes-area{height:60px}
+.progress-bar-wrap{margin-top:12px;background:var(--color-background-secondary);border-radius:4px;overflow:hidden;height:8px}
+.progress-bar-fill{height:100%;background:#555;transition:width 0.4s;border-radius:4px}
+.progress-label{font-size:11px;color:var(--color-text-secondary);margin-top:4px;text-align:right}
+</style>
+
+<div class="planner">
+  <h1>PLANNER DE ESTUDOS</h1>
+  <div class="subtitle">DISCIPLINA HOJE, CONQUISTA SEMPRE.</div>
+
+  <div class="top-grid">
+    <div class="box">
+      <div class="box-title">OBJETIVOS</div>
+      <div class="obj-item"><input type="checkbox" id="o1"><label for="o1">Aprender todos os dias</label></div>
+      <div class="obj-item"><input type="checkbox" id="o2"><label for="o2">Evoluir 1% a cada dia</label></div>
+      <div class="obj-item"><input type="checkbox" id="o3"><label for="o3">Dar o meu melhor</label></div>
+      <div class="obj-item"><input type="checkbox" id="o4"><label for="o4">Realizar meus sonhos</label></div>
+    </div>
+    <div class="box">
+      <div class="box-title">COMO ESTUDAR</div>
+      <div class="como-item"><span class="como-icon">⏱</span> 50 minutos de estudo</div>
+      <div class="como-item"><span class="como-icon">⏸</span> 10 minutos de intervalo</div>
+      <div class="como-item"><span class="como-icon">📋</span> Resumo ou mapa mental ao final de cada matéria</div>
+    </div>
+    <div class="box">
+      <div class="box-title">BOAS PRÁTICAS</div>
+      <ul class="boas">
+        <li>Estude em blocos de 50 min.</li>
+        <li>Faça pausas de 10 min.</li>
+        <li>Deixe o celular longe.</li>
+        <li>Resolva exercícios após cada conteúdo.</li>
+        <li>Revise a matéria pelo menos 1x por semana.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="section-title">PLANO SEMANAL</div>
+
+  <div class="week-grid" id="weekGrid">
+    <div class="day-col">
+      <div class="day-header">SEGUNDA</div>
+      <div class="task-block" onclick="toggleTask(this)"><div class="task-title">Matemática <span class="task-time">(1h30)</span></div><ul class="task-items"><li>Revisão da teoria</li><li>Resolução de exercícios</li></ul></div>
+      <div class="task-block" onclick="toggleTask(this)"><div class="task-title">Português <span class="task-time">(1h)</span></div><ul class="task-items"><li>Gramática</li><li>Interpretação de texto</li></ul></div>
+      <div class="task-block" onclick="toggleTask(this)"><div class="task-title">Revisão <span class="task-time">(30 min)</span></div><ul class="task-items"><li>Anotações das aulas do dia</li></ul></div>
+    </div>
+    <div class="day-col">
+      <div class="day-header">TERÇA</div>
+      <div class="task-block" onclick="toggleTask(this)"><div class="task-title">Física <span class="task-time">(1h30)</span></div><ul class="task-items"><li>Conceitos e fórmulas</li><li>Exercícios</li></ul></div>
+      <div class="task-block" onclick="toggleTask(this)"><div class="task-title">História <span class="task-time">(1h)</span></div><ul class="task-items"><li>Resumo do conteúdo</li><li>Linha do tempo dos acontecimentos</li></ul></div>
+      <div class="task-block" onclick="toggleTask(this)"><div class="task-title">Atualidades <span class="task-time">(30 min)</span></div><ul class="task-items"><li>Leitura de notícias e interpretações</li></ul></div>
+    </div>
+    <div class="day-col">
+      <div class="day-header">QUARTA</div>
+      <div class="task-block" onclick="toggleTask(this)"><div class="task-title">Química <span class="task-time">(1h30)</span></div><ul class="task-items"><li>Teoria</li><li>Exercícios comentados</li></ul></div>
+      <div class="task-block" onclick="toggleTask(this)"><div class="task-title">Geografia <span class="task-time">(1h)</span></div><ul class="task-items"><li>Mapas e conceitos</li><li>Exercícios</li></ul></div>
+      <div class="task-block" onclick="toggleTask(this)"><div class="task-title">Revisão <span class="task-time">(30 min)</span></div><ul class="task-items"><li>Flashcards ou resumos</li></ul></div>
+    </div>
+    <div class="day-col">
+      <div class="day-header">QUINTA</div>
+      <div class="task-block" onclick="toggleTask(this)"><div class="task-title">Biologia <span class="task-time">(1h30)</span></div><ul class="task-items"><li>Leitura e esquemas</li><li>Exercícios</li></ul></div>
+      <div class="task-block" onclick="toggleTask(this)"><div class="task-title">Inglês <span class="task-time">(1h)</span></div><ul class="task-items"><li>Vocabulário</li><li>Interpretação de textos</li></ul></div>
+      <div class="task-block" onclick="toggleTask(this)"><div class="task-title">Redação <span class="task-time">(30 min)</span></div><ul class="task-items"><li>Produção de um texto curto</li></ul></div>
+    </div>
+    <div class="day-col">
+      <div class="day-header">SEXTA</div>
+      <div class="task-block" onclick="toggleTask(this)"><div class="task-title">Matemática <span class="task-time">(1h)</span></div><ul class="task-items"><li>Revisão da semana</li></ul></div>
+      <div class="task-block" onclick="toggleTask(this)"><div class="task-title">Português <span class="task-time">(1h)</span></div><ul class="task-items"><li>Exercícios de gramática</li></ul></div>
+      <div class="task-block" onclick="toggleTask(this)"><div class="task-title">Simulado <span class="task-time">(1h)</span></div><ul class="task-items"><li>Questões de diversas disciplinas</li></ul></div>
+      <div class="task-block" onclick="toggleTask(this)"><div class="task-title">Correção <span class="task-time">(30 min)</span></div><ul class="task-items"><li>Identificar erros</li></ul></div>
+    </div>
+  </div>
+
+  <div style="font-size:11px;color:var(--color-text-secondary);margin-bottom:0.8rem;text-align:right" id="weekProgress">Clique nas tarefas para marcar como concluída</div>
+
+  <div class="weekend-grid">
+    <div class="weekend-box">
+      <div class="weekend-title">SÁBADO</div>
+      <div class="wk-task" onclick="toggleWkTask(this)"><div class="wk-task-title">Redação Completa (1h)</div><ul><li>Tema estilo ENEM</li></ul></div>
+      <div class="wk-task" onclick="toggleWkTask(this)"><div class="wk-task-title">Trabalhos Escolares (1h30)</div><ul><li>Pesquisas e atividades</li></ul></div>
+      <div class="wk-task" onclick="toggleWkTask(this)"><div class="wk-task-title">Revisão Geral (1h)</div><ul><li>Rever conteúdos mais difíceis</li></ul></div>
+      <div class="wk-task" onclick="toggleWkTask(this)"><div class="wk-task-title">Leitura (30 min)</div><ul><li>Livro, artigo ou reportagem</li></ul></div>
+    </div>
+    <div class="weekend-box" style="text-align:center">
+      <div class="weekend-title">DOMINGO</div>
+      <div style="font-size:1.3rem;font-weight:700;margin:16px 0 4px">Descanso</div>
+      <div style="font-size:12px;color:var(--color-text-secondary);margin-bottom:12px">ou</div>
+      <div class="wk-task" style="text-align:left" onclick="toggleWkTask(this)"><div class="wk-task-title">Revisão Leve (1h)</div><ul><li>Flashcards</li><li>Fórmulas</li><li>Resumos</li></ul></div>
+    </div>
+  </div>
+
+  <div class="bottom-grid">
+    <div class="box">
+      <div class="box-title">CRONOGRAMA DE REVISÕES</div>
+      <div class="crono-step"><div class="step-num">1</div><div class="step-text"><strong>Revisão 1:</strong> no mesmo dia</div></div>
+      <div class="crono-step"><div class="step-num">2</div><div class="step-text"><strong>Revisão 2:</strong> após 7 dias</div></div>
+      <div class="crono-step"><div class="step-num">3</div><div class="step-text"><strong>Revisão 3:</strong> após 30 dias</div></div>
+    </div>
+    <div class="box">
+      <div class="box-title">METAS MENSAIS</div>
+      <div class="meta-row"><span>Matemática</span><div class="meta-prog" onclick="cycleProgress(this)" title="Clique para avançar"><div class="meta-fill" style="width:0%"></div></div></div>
+      <div class="meta-row"><span>Português</span><div class="meta-prog" onclick="cycleProgress(this)" title="Clique para avançar"><div class="meta-fill" style="width:0%"></div></div></div>
+      <div class="meta-row"><span>Ciências da Natureza</span><div class="meta-prog" onclick="cycleProgress(this)" title="Clique para avançar"><div class="meta-fill" style="width:0%"></div></div></div>
+      <div class="meta-row"><span>Humanas</span><div class="meta-prog" onclick="cycleProgress(this)" title="Clique para avançar"><div class="meta-fill" style="width:0%"></div></div></div>
+      <div class="meta-row"><span>Inglês</span><div class="meta-prog" onclick="cycleProgress(this)" title="Clique para avançar"><div class="meta-fill" style="width:0%"></div></div></div>
+    </div>
+    <div class="box">
+      <div class="box-title">CONTROLE DE PROGRESSO</div>
+      <table class="progress-table">
+        <thead><tr><th>META</th><th>S</th><th>T</th><th>Q</th><th>Q</th><th>S</th><th>S</th><th>D</th></tr></thead>
+        <tbody id="progressBody"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="reflect-grid">
+    <div class="box">
+      <div class="box-title">REFLEXÃO SEMANAL</div>
+      <div class="reflect-item"><label>O que eu aprendi?</label><textarea class="reflect-area" rows="2" placeholder="Escreva aqui..."></textarea></div>
+      <div class="reflect-item"><label>O que posso melhorar?</label><textarea class="reflect-area" rows="2" placeholder="Escreva aqui..."></textarea></div>
+      <div class="reflect-item"><label>Do que me orgulho?</label><textarea class="reflect-area" rows="2" placeholder="Escreva aqui..."></textarea></div>
+    </div>
+    <div class="box">
+      <div class="box-title">ANOTAÇÕES</div>
+      <textarea class="notes-area" style="height:140px;width:100%;border:none;border-bottom:0.5px solid var(--color-border-secondary);background:transparent;font-family:inherit;font-size:12px;color:var(--color-text-primary);resize:none;outline:none;padding:4px 0" placeholder="Escreva suas anotações aqui..."></textarea>
+    </div>
+  </div>
+
+  <div class="progress-bar-wrap"><div class="progress-bar-fill" id="totalBar" style="width:0%"></div></div>
+  <div class="progress-label" id="totalLabel">0% da semana concluída</div>
+</div>
+
+<script>
+const progressRows = ['Estudei hoje','Fiz exercícios','Revisei conteúdo','Organizei material','Dormi 8 horas'];
+const days = ['S','T','Q','Q','S','S','D'];
+const tbody = document.getElementById('progressBody');
+progressRows.forEach(row => {
+  const tr = document.createElement('tr');
+  let html = `<td>${row}</td>`;
+  days.forEach((_,i) => {
+    html += `<td><input type="checkbox" class="prog-check" onchange="updateTotal()"></td>`;
+  });
+  tr.innerHTML = html;
+  tbody.appendChild(tr);
+});
+
+function toggleTask(el){
+  el.classList.toggle('done');
+  updateTotal();
+}
+function toggleWkTask(el){
+  el.classList.toggle('done');
+  updateTotal();
+}
+function cycleProgress(wrap){
+  const fill = wrap.querySelector('.meta-fill');
+  const steps = [0,25,50,75,100];
+  const cur = parseInt(fill.style.width)||0;
+  const idx = steps.indexOf(cur);
+  const next = steps[(idx+1)%steps.length];
+  fill.style.width = next+'%';
+}
+function updateTotal(){
+  const tasks = document.querySelectorAll('.task-block');
+  const wkTasks = document.querySelectorAll('.wk-task');
+  const done = [...tasks,...wkTasks].filter(t=>t.classList.contains('done')).length;
+  const total = tasks.length + wkTasks.length;
+  const pct = Math.round(done/total*100);
+  document.getElementById('totalBar').style.width = pct+'%';
+  document.getElementById('totalLabel').textContent = pct+'% da semana concluída ('+done+'/'+total+' tarefas)';
+  document.getElementById('weekProgress').textContent = done > 0 ? done+' tarefa(s) concluída(s) esta semana' : 'Clique nas tarefas para marcar como concluída';
+}
+document.querySelectorAll('.reflect-area').forEach(ta=>{
+  ta.style.cssText='width:100%;border:none;border-bottom:0.5px solid var(--color-border-secondary);background:transparent;font-family:inherit;font-size:12px;color:var(--color-text-primary);resize:none;outline:none;padding:2px 0;line-height:1.6;margin-bottom:8px';
+});
+</script>
