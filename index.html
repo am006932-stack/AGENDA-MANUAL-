@@ -21,9 +21,7 @@
     --gold: #d4a843;
     --spine: #1a252f;
   }
-
   * { box-sizing: border-box; margin: 0; padding: 0; }
-
   body {
     background: #1a1a2e;
     background-image: radial-gradient(ellipse at 20% 50%, #16213e 0%, #0f3460 50%, #1a1a2e 100%);
@@ -35,7 +33,6 @@
     font-family: 'Lato', sans-serif;
     padding: 20px;
   }
-
   .book-wrap { perspective: 2000px; width: 860px; max-width: 100%; }
   .book {
     position: relative; width: 860px; height: 580px;
@@ -194,7 +191,7 @@
   #ai-fab:hover { transform: scale(1.1); box-shadow: 0 6px 28px rgba(102,126,234,0.7); }
   #ai-panel {
     position: fixed; bottom: 96px; right: 30px;
-    width: 340px; max-height: 480px;
+    width: 360px; max-height: 500px;
     background: rgba(20,20,40,0.97); backdrop-filter: blur(20px);
     border: 1px solid rgba(102,126,234,0.3); border-radius: 16px;
     box-shadow: 0 20px 60px rgba(0,0,0,0.5);
@@ -211,7 +208,7 @@
   .ai-close { background:none; border:none; color:rgba(255,255,255,0.3); cursor:pointer; font-size:18px; padding:2px 6px; transition:color 0.2s; }
   .ai-close:hover { color:white; }
   .ai-messages { flex:1; overflow-y:auto; padding:12px; display:flex; flex-direction:column; gap:8px; scrollbar-width:thin; scrollbar-color:rgba(255,255,255,0.1) transparent; }
-  .ai-msg { max-width:90%; padding:8px 12px; border-radius:12px; font-family:'Lato',sans-serif; font-size:12px; line-height:1.5; animation:msgIn 0.25s ease; }
+  .ai-msg { max-width:92%; padding:8px 12px; border-radius:12px; font-family:'Lato',sans-serif; font-size:12px; line-height:1.5; animation:msgIn 0.25s ease; }
   @keyframes msgIn { from{opacity:0;transform:translateY(6px)} to{opacity:1;transform:translateY(0)} }
   .ai-msg.bot { background:rgba(102,126,234,0.15); border:1px solid rgba(102,126,234,0.2); color:rgba(255,255,255,0.85); align-self:flex-start; border-radius:4px 12px 12px 12px; }
   .ai-msg.user { background:rgba(102,126,234,0.35); color:white; align-self:flex-end; border-radius:12px 4px 12px 12px; }
@@ -243,8 +240,6 @@
     color: white; font-size: 22px;
   }
   #notif-fab:hover { transform: scale(1.1); box-shadow: 0 6px 28px rgba(243,156,18,0.7); }
-
-  /* Badge de contagem */
   #notif-badge {
     position: absolute; top: -3px; right: -3px;
     background: #e74c3c; color: white;
@@ -267,175 +262,62 @@
     transform-origin: bottom right;
   }
   #notif-panel.hidden { opacity:0; transform:scale(0.7); pointer-events:none; }
-
-  .notif-panel-header {
-    padding: 14px 16px 12px;
-    border-bottom: 1px solid rgba(255,255,255,0.07);
-    display: flex; align-items: center; gap: 10px;
-  }
-  .notif-panel-icon {
-    width: 32px; height: 32px; border-radius: 50%;
-    background: linear-gradient(135deg, #f39c12, #e74c3c);
-    display: flex; align-items: center; justify-content: center;
-    font-size: 15px; flex-shrink: 0;
-  }
+  .notif-panel-header { padding: 14px 16px 12px; border-bottom: 1px solid rgba(255,255,255,0.07); display: flex; align-items: center; gap: 10px; }
+  .notif-panel-icon { width: 32px; height: 32px; border-radius: 50%; background: linear-gradient(135deg, #f39c12, #e74c3c); display: flex; align-items: center; justify-content: center; font-size: 15px; flex-shrink: 0; }
   .notif-panel-title { flex: 1; }
   .notif-panel-title h3 { font-family: 'Lato', sans-serif; font-size: 13px; font-weight: 700; color: white; }
   .notif-panel-title p  { font-family: 'Lato', sans-serif; font-size: 10px; color: rgba(255,255,255,0.35); margin-top: 1px; }
   .notif-close { background: none; border: none; color: rgba(255,255,255,0.3); cursor: pointer; font-size: 18px; padding: 2px 6px; transition: color 0.2s; }
   .notif-close:hover { color: white; }
-
-  /* Abas */
-  .notif-tabs {
-    display: flex; border-bottom: 1px solid rgba(255,255,255,0.07);
-  }
-  .notif-tab {
-    flex: 1; padding: 8px 4px; background: none; border: none;
-    color: rgba(255,255,255,0.35); font-family: 'Lato', sans-serif;
-    font-size: 11px; letter-spacing: 0.5px; cursor: pointer;
-    transition: all 0.2s; border-bottom: 2px solid transparent;
-  }
+  .notif-tabs { display: flex; border-bottom: 1px solid rgba(255,255,255,0.07); }
+  .notif-tab { flex: 1; padding: 8px 4px; background: none; border: none; color: rgba(255,255,255,0.35); font-family: 'Lato', sans-serif; font-size: 11px; letter-spacing: 0.5px; cursor: pointer; transition: all 0.2s; border-bottom: 2px solid transparent; }
   .notif-tab.active { color: #f39c12; border-bottom-color: #f39c12; }
   .notif-tab:hover { color: rgba(255,255,255,0.7); }
-
-  /* Conteúdo das abas */
   .notif-tab-content { display: none; flex-direction: column; flex: 1; overflow: hidden; }
   .notif-tab-content.active { display: flex; }
-
-  /* ─── Aba: AVISOS DO DIA ─── */
-  .notif-today-list {
-    flex: 1; overflow-y: auto; padding: 10px 12px;
-    scrollbar-width: thin; scrollbar-color: rgba(255,255,255,0.1) transparent;
-    display: flex; flex-direction: column; gap: 6px;
-  }
-  .notif-item {
-    background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.07);
-    border-radius: 10px; padding: 8px 10px;
-    display: flex; align-items: flex-start; gap: 8px;
-    animation: msgIn 0.25s ease;
-  }
-  .notif-item-dot {
-    width: 8px; height: 8px; border-radius: 50%;
-    flex-shrink: 0; margin-top: 4px;
-  }
+  .notif-today-list { flex: 1; overflow-y: auto; padding: 10px 12px; scrollbar-width: thin; scrollbar-color: rgba(255,255,255,0.1) transparent; display: flex; flex-direction: column; gap: 6px; }
+  .notif-item { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.07); border-radius: 10px; padding: 8px 10px; display: flex; align-items: flex-start; gap: 8px; animation: msgIn 0.25s ease; }
+  .notif-item-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; margin-top: 4px; }
   .notif-item-body { flex: 1; }
   .notif-item-title { font-family: 'Lato', sans-serif; font-size: 12px; font-weight: 700; color: white; }
   .notif-item-sub   { font-family: 'Lato', sans-serif; font-size: 10px; color: rgba(255,255,255,0.4); margin-top: 2px; }
-  .notif-item-dismiss {
-    background: none; border: none; color: rgba(255,255,255,0.2);
-    cursor: pointer; font-size: 14px; line-height: 1; padding: 0 2px;
-    transition: color 0.15s; flex-shrink: 0;
-  }
+  .notif-item-dismiss { background: none; border: none; color: rgba(255,255,255,0.2); cursor: pointer; font-size: 14px; line-height: 1; padding: 0 2px; transition: color 0.15s; flex-shrink: 0; }
   .notif-item-dismiss:hover { color: #e74c3c; }
   .notif-empty { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; padding: 20px; }
   .notif-empty-icon { font-size: 32px; opacity: 0.3; }
   .notif-empty-text { font-family: 'Lato', sans-serif; font-size: 12px; color: rgba(255,255,255,0.25); text-align: center; }
-
-  /* ─── Aba: CONFIGURAR ─── */
   .notif-config { flex: 1; overflow-y: auto; padding: 12px; scrollbar-width: thin; scrollbar-color: rgba(255,255,255,0.1) transparent; }
-
-  .notif-section-label {
-    font-family: 'Lato', sans-serif; font-size: 10px; letter-spacing: 1.5px;
-    color: rgba(255,255,255,0.3); text-transform: uppercase;
-    margin: 10px 0 6px; padding-left: 2px;
-  }
+  .notif-section-label { font-family: 'Lato', sans-serif; font-size: 10px; letter-spacing: 1.5px; color: rgba(255,255,255,0.3); text-transform: uppercase; margin: 10px 0 6px; padding-left: 2px; }
   .notif-section-label:first-child { margin-top: 0; }
-
-  .notif-toggle-row {
-    display: flex; align-items: center; justify-content: space-between;
-    padding: 8px 10px; background: rgba(255,255,255,0.04);
-    border-radius: 8px; margin-bottom: 5px;
-  }
+  .notif-toggle-row { display: flex; align-items: center; justify-content: space-between; padding: 8px 10px; background: rgba(255,255,255,0.04); border-radius: 8px; margin-bottom: 5px; }
   .notif-toggle-label { font-family: 'Lato', sans-serif; font-size: 12px; color: rgba(255,255,255,0.75); }
   .notif-toggle-sub   { font-family: 'Lato', sans-serif; font-size: 10px; color: rgba(255,255,255,0.3); margin-top: 1px; }
-
-  /* Toggle switch */
   .toggle-switch { position: relative; width: 36px; height: 20px; flex-shrink: 0; }
   .toggle-switch input { opacity: 0; width: 0; height: 0; }
-  .toggle-slider {
-    position: absolute; inset: 0; background: rgba(255,255,255,0.12);
-    border-radius: 20px; cursor: pointer; transition: background 0.25s;
-  }
-  .toggle-slider::before {
-    content: ''; position: absolute; left: 3px; top: 3px;
-    width: 14px; height: 14px; border-radius: 50%;
-    background: rgba(255,255,255,0.5); transition: transform 0.25s, background 0.25s;
-  }
+  .toggle-slider { position: absolute; inset: 0; background: rgba(255,255,255,0.12); border-radius: 20px; cursor: pointer; transition: background 0.25s; }
+  .toggle-slider::before { content: ''; position: absolute; left: 3px; top: 3px; width: 14px; height: 14px; border-radius: 50%; background: rgba(255,255,255,0.5); transition: transform 0.25s, background 0.25s; }
   .toggle-switch input:checked + .toggle-slider { background: #f39c12; }
   .toggle-switch input:checked + .toggle-slider::before { transform: translateX(16px); background: white; }
-
-  /* Horário */
-  .notif-time-row {
-    display: flex; align-items: center; justify-content: space-between;
-    padding: 8px 10px; background: rgba(255,255,255,0.04);
-    border-radius: 8px; margin-bottom: 5px;
-  }
+  .notif-time-row { display: flex; align-items: center; justify-content: space-between; padding: 8px 10px; background: rgba(255,255,255,0.04); border-radius: 8px; margin-bottom: 5px; }
   .notif-time-label { font-family: 'Lato', sans-serif; font-size: 12px; color: rgba(255,255,255,0.75); }
-  #notif-time-input {
-    background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.12);
-    border-radius: 6px; color: white; font-family: 'Lato', sans-serif;
-    font-size: 13px; padding: 4px 8px; outline: none; width: 80px; text-align: center;
-  }
+  #notif-time-input { background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.12); border-radius: 6px; color: white; font-family: 'Lato', sans-serif; font-size: 13px; padding: 4px 8px; outline: none; width: 80px; text-align: center; }
   #notif-time-input:focus { border-color: rgba(243,156,18,0.5); }
-
-  /* Antecedência */
-  .notif-advance-row {
-    display: flex; align-items: center; justify-content: space-between;
-    padding: 8px 10px; background: rgba(255,255,255,0.04);
-    border-radius: 8px; margin-bottom: 5px;
-  }
+  .notif-advance-row { display: flex; align-items: center; justify-content: space-between; padding: 8px 10px; background: rgba(255,255,255,0.04); border-radius: 8px; margin-bottom: 5px; }
   .notif-advance-label { font-family: 'Lato', sans-serif; font-size: 12px; color: rgba(255,255,255,0.75); }
-  #notif-advance-select {
-    background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.12);
-    border-radius: 6px; color: white; font-family: 'Lato', sans-serif;
-    font-size: 12px; padding: 4px 8px; outline: none; cursor: pointer;
-  }
+  #notif-advance-select { background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.12); border-radius: 6px; color: white; font-family: 'Lato', sans-serif; font-size: 12px; padding: 4px 8px; outline: none; cursor: pointer; }
   #notif-advance-select option { background: #1a1a2e; }
-
-  /* Botão permitir notificações */
-  #notif-permission-btn {
-    width: 100%; margin-top: 10px; padding: 10px;
-    background: linear-gradient(135deg, #f39c12, #e67e22);
-    border: none; border-radius: 10px; color: white;
-    font-family: 'Lato', sans-serif; font-size: 12px; font-weight: 700;
-    letter-spacing: 0.5px; cursor: pointer; transition: opacity 0.2s;
-  }
+  #notif-permission-btn { width: 100%; margin-top: 10px; padding: 10px; background: linear-gradient(135deg, #f39c12, #e67e22); border: none; border-radius: 10px; color: white; font-family: 'Lato', sans-serif; font-size: 12px; font-weight: 700; letter-spacing: 0.5px; cursor: pointer; transition: opacity 0.2s; }
   #notif-permission-btn:hover { opacity: 0.85; }
   #notif-permission-btn:disabled { opacity: 0.4; cursor: not-allowed; }
-
-  #notif-permission-status {
-    text-align: center; font-family: 'Lato', sans-serif; font-size: 10px;
-    color: rgba(255,255,255,0.3); margin-top: 6px;
-  }
-
-  /* ─── Aba: PRÓXIMAS ─── */
-  .notif-upcoming-list {
-    flex: 1; overflow-y: auto; padding: 10px 12px;
-    scrollbar-width: thin; scrollbar-color: rgba(255,255,255,0.1) transparent;
-    display: flex; flex-direction: column; gap: 5px;
-  }
-  .notif-upcoming-item {
-    display: flex; align-items: center; gap: 10px;
-    padding: 7px 10px; background: rgba(255,255,255,0.03);
-    border-radius: 8px; border-left: 3px solid;
-  }
+  #notif-permission-status { text-align: center; font-family: 'Lato', sans-serif; font-size: 10px; color: rgba(255,255,255,0.3); margin-top: 6px; }
+  .notif-upcoming-list { flex: 1; overflow-y: auto; padding: 10px 12px; scrollbar-width: thin; scrollbar-color: rgba(255,255,255,0.1) transparent; display: flex; flex-direction: column; gap: 5px; }
+  .notif-upcoming-item { display: flex; align-items: center; gap: 10px; padding: 7px 10px; background: rgba(255,255,255,0.03); border-radius: 8px; border-left: 3px solid; }
   .notif-upcoming-date { font-family: 'Lato', sans-serif; font-size: 10px; color: rgba(255,255,255,0.4); min-width: 50px; }
   .notif-upcoming-task { font-family: 'Lato', sans-serif; font-size: 12px; color: rgba(255,255,255,0.8); flex: 1; }
 
   /* ===== TOAST IN-APP ===== */
-  #toast-container {
-    position: fixed; top: 20px; right: 20px;
-    display: flex; flex-direction: column; gap: 8px;
-    z-index: 9999; pointer-events: none;
-  }
-  .toast {
-    background: rgba(15,15,30,0.97); backdrop-filter: blur(20px);
-    border: 1px solid rgba(243,156,18,0.35); border-radius: 12px;
-    padding: 12px 16px; min-width: 280px; max-width: 360px;
-    display: flex; align-items: flex-start; gap: 10px;
-    pointer-events: auto; box-shadow: 0 8px 32px rgba(0,0,0,0.5);
-    animation: toastIn 0.35s cubic-bezier(0.34,1.56,0.64,1);
-  }
+  #toast-container { position: fixed; top: 20px; right: 20px; display: flex; flex-direction: column; gap: 8px; z-index: 9999; pointer-events: none; }
+  .toast { background: rgba(15,15,30,0.97); backdrop-filter: blur(20px); border: 1px solid rgba(243,156,18,0.35); border-radius: 12px; padding: 12px 16px; min-width: 280px; max-width: 360px; display: flex; align-items: flex-start; gap: 10px; pointer-events: auto; box-shadow: 0 8px 32px rgba(0,0,0,0.5); animation: toastIn 0.35s cubic-bezier(0.34,1.56,0.64,1); }
   @keyframes toastIn { from{opacity:0;transform:translateX(80px)} to{opacity:1;transform:translateX(0)} }
   @keyframes toastOut { from{opacity:1;transform:translateX(0)} to{opacity:0;transform:translateX(80px)} }
   .toast.removing { animation: toastOut 0.3s ease forwards; }
@@ -559,19 +441,16 @@
   <button class="quick-btn" onclick="goToSpread(0)">Calendário</button>
 </div>
 
-<!-- Toast container -->
 <div id="toast-container"></div>
 
-<!-- ===== AI FAB ===== -->
 <button id="ai-fab" onclick="toggleAI()" title="Assistente de Planejamento">✦</button>
 
-<!-- ===== NOTIFICATION FAB ===== -->
 <button id="notif-fab" onclick="toggleNotifPanel()" title="Notificações" style="position:relative;">
   🔔
   <div id="notif-badge"></div>
 </button>
 
-<!-- ===== AI PANEL ===== -->
+<!-- AI PANEL -->
 <div id="ai-panel" class="hidden">
   <div class="ai-header">
     <div class="ai-avatar">✦</div>
@@ -582,12 +461,12 @@
     <button class="ai-close" onclick="toggleAI()">✕</button>
   </div>
   <div class="ai-messages" id="ai-messages">
-    <div class="ai-msg bot">Olá! Fale comigo em linguagem natural e eu adiciono as tarefas no seu planner.<br><br>Exemplos:<br>• <em>"Todo sábado até junho tenho futebol"</em><br>• <em>"Dias 10 de cada mês: pagar contas"</em><br>• <em>"Toda segunda de março a setembro: reunião às 9h"</em></div>
+    <div class="ai-msg bot">Olá! Descreva suas tarefas recorrentes e eu adiciono no planner automaticamente.<br><br>Exemplos:<br>• <em>"Todo sábado até junho tenho futebol"</em><br>• <em>"Dias 10 de cada mês: pagar contas"</em><br>• <em>"Toda segunda de março a setembro: reunião"</em></div>
   </div>
   <div class="ai-suggestions" id="ai-suggestions">
     <button class="ai-sug-btn" onclick="fillSug('Toda terça até novembro tenho academia')">Toda terça — academia</button>
     <button class="ai-sug-btn" onclick="fillSug('Todo sábado de janeiro a junho: futebol')">Todo sábado — futebol</button>
-    <button class="ai-sug-btn" onclick="fillSug('Dia 5 de cada mês: pagar aluguel')">Dia 5 — pagar aluguel</button>
+    <button class="ai-sug-btn" onclick="fillSug('Dia 5 de cada mês: pagar contas')">Dia 5 — pagar contas</button>
     <button class="ai-sug-btn" onclick="fillSug('Toda segunda e quarta de fevereiro a abril: inglês')">Seg/Qua — inglês</button>
   </div>
   <div class="ai-input-row">
@@ -596,7 +475,7 @@
   </div>
 </div>
 
-<!-- ===== NOTIFICATION PANEL ===== -->
+<!-- NOTIFICATION PANEL -->
 <div id="notif-panel" class="hidden">
   <div class="notif-panel-header">
     <div class="notif-panel-icon">🔔</div>
@@ -606,71 +485,40 @@
     </div>
     <button class="notif-close" onclick="toggleNotifPanel()">✕</button>
   </div>
-
   <div class="notif-tabs">
     <button class="notif-tab active" onclick="switchNotifTab('hoje')">Hoje</button>
     <button class="notif-tab" onclick="switchNotifTab('proximas')">Próximas</button>
     <button class="notif-tab" onclick="switchNotifTab('config')">Configurar</button>
   </div>
-
-  <!-- ABA: HOJE -->
   <div class="notif-tab-content active" id="ntab-hoje">
     <div class="notif-today-list" id="notif-today-list"></div>
   </div>
-
-  <!-- ABA: PRÓXIMAS -->
   <div class="notif-tab-content" id="ntab-proximas">
     <div class="notif-upcoming-list" id="notif-upcoming-list"></div>
   </div>
-
-  <!-- ABA: CONFIGURAR -->
   <div class="notif-tab-content" id="ntab-config">
     <div class="notif-config">
       <div class="notif-section-label">Permissão do Navegador</div>
       <button id="notif-permission-btn" onclick="requestPermission()">🔔 Ativar notificações do navegador</button>
       <div id="notif-permission-status">clique para ativar lembretes mesmo com a aba fechada</div>
-
       <div class="notif-section-label" style="margin-top:14px;">Lembretes</div>
-
       <div class="notif-toggle-row">
-        <div>
-          <div class="notif-toggle-label">Tarefas do dia</div>
-          <div class="notif-toggle-sub">avisa sobre eventos no planner hoje</div>
-        </div>
-        <label class="toggle-switch">
-          <input type="checkbox" id="toggle-daily" checked onchange="saveNotifConfig()">
-          <span class="toggle-slider"></span>
-        </label>
+        <div><div class="notif-toggle-label">Tarefas do dia</div><div class="notif-toggle-sub">avisa sobre eventos no planner hoje</div></div>
+        <label class="toggle-switch"><input type="checkbox" id="toggle-daily" checked onchange="saveNotifConfig()"><span class="toggle-slider"></span></label>
       </div>
-
       <div class="notif-toggle-row">
-        <div>
-          <div class="notif-toggle-label">Metas pendentes</div>
-          <div class="notif-toggle-sub">lembra metas não concluídas do mês</div>
-        </div>
-        <label class="toggle-switch">
-          <input type="checkbox" id="toggle-metas" checked onchange="saveNotifConfig()">
-          <span class="toggle-slider"></span>
-        </label>
+        <div><div class="notif-toggle-label">Metas pendentes</div><div class="notif-toggle-sub">lembra metas não concluídas do mês</div></div>
+        <label class="toggle-switch"><input type="checkbox" id="toggle-metas" checked onchange="saveNotifConfig()"><span class="toggle-slider"></span></label>
       </div>
-
       <div class="notif-toggle-row">
-        <div>
-          <div class="notif-toggle-label">Notas do mural</div>
-          <div class="notif-toggle-sub">mostra os post-its do mês atual</div>
-        </div>
-        <label class="toggle-switch">
-          <input type="checkbox" id="toggle-mural" onchange="saveNotifConfig()">
-          <span class="toggle-slider"></span>
-        </label>
+        <div><div class="notif-toggle-label">Notas do mural</div><div class="notif-toggle-sub">mostra os post-its do mês atual</div></div>
+        <label class="toggle-switch"><input type="checkbox" id="toggle-mural" onchange="saveNotifConfig()"><span class="toggle-slider"></span></label>
       </div>
-
       <div class="notif-section-label" style="margin-top:14px;">Horário do lembrete diário</div>
       <div class="notif-time-row">
         <div class="notif-time-label">Horário</div>
         <input type="time" id="notif-time-input" value="08:00" onchange="saveNotifConfig()">
       </div>
-
       <div class="notif-section-label" style="margin-top:14px;">Antecedência para eventos</div>
       <div class="notif-advance-row">
         <div class="notif-advance-label">Avisar com antecedência de</div>
@@ -739,7 +587,6 @@ function buildMonthPages() {
   for (let m = 0; m < 12; m++) {
     const spreadA = m * 2 + 1;
     const spreadB = m * 2 + 2;
-
     const pageAL = createPage(`page-${spreadA}-L`, spreadA, 'left');
     const pageAR = createPage(`page-${spreadA}-R`, spreadA, 'right');
     pageAL.querySelector('.page-front > .paper-bg').innerHTML = buildPlannerHTML(m);
@@ -1118,11 +965,12 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 // ============================================================
-// AI ASSISTANT
+// AI ASSISTANT — INTERPRETAÇÃO LOCAL (sem chamada externa)
 // ============================================================
 let aiOpen = false;
 function toggleAI() { aiOpen = !aiOpen; document.getElementById('ai-panel').classList.toggle('hidden', !aiOpen); if (aiOpen) document.getElementById('ai-input').focus(); }
 function fillSug(text) { document.getElementById('ai-input').value = text; document.getElementById('ai-input').focus(); }
+
 function addAIMessage(text, type='bot') {
   const msgs = document.getElementById('ai-messages');
   const div = document.createElement('div');
@@ -1132,6 +980,7 @@ function addAIMessage(text, type='bot') {
   msgs.scrollTop = msgs.scrollHeight;
   return div;
 }
+
 function showTyping() {
   const msgs = document.getElementById('ai-messages');
   const div = document.createElement('div');
@@ -1139,9 +988,106 @@ function showTyping() {
   div.innerHTML = '<span></span><span></span><span></span>';
   msgs.appendChild(div); msgs.scrollTop = msgs.scrollHeight;
 }
+
 function hideTyping() { const el = document.getElementById('ai-typing'); if (el) el.remove(); }
 
-async function sendAI() {
+// --- Interpretação local de linguagem natural ---
+function parseTaskText(text) {
+  const t = text.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'');
+
+  // Mapeamento de dias da semana
+  const daysMap = {
+    'domingo':0,'dom':0,
+    'segunda':1,'segunda-feira':1,'seg':1,
+    'terca':2,'terca-feira':2,'ter':2,
+    'quarta':3,'quarta-feira':3,'qua':3,
+    'quinta':4,'quinta-feira':4,'qui':4,
+    'sexta':5,'sexta-feira':5,'sex':5,
+    'sabado':6,'sab':6
+  };
+
+  // Mapeamento de meses
+  const monthsMap = {
+    'janeiro':0,'jan':0,'fevereiro':1,'fev':1,'marco':2,'mar':2,
+    'abril':3,'abr':3,'maio':4,'mai':4,'junho':5,'jun':5,
+    'julho':6,'jul':6,'agosto':7,'ago':7,'setembro':8,'set':8,
+    'outubro':9,'out':9,'novembro':10,'nov':10,'dezembro':11,'dez':11
+  };
+
+  // Detecta dias da semana mencionados
+  const dias_semana = [];
+  Object.entries(daysMap).forEach(([name, num]) => {
+    if (t.includes(name) && !dias_semana.includes(num)) dias_semana.push(num);
+  });
+
+  // Detecta dia do mês (ex: "dia 5", "todo dia 10")
+  let dia_mes = null;
+  const diaMatch = t.match(/dia\s+(\d{1,2})/);
+  if (diaMatch) dia_mes = parseInt(diaMatch[1]);
+
+  // Detecta mês de início e fim
+  let mes_inicio = null, mes_fim = null;
+  const mesesEncontrados = [];
+  Object.entries(monthsMap).forEach(([name, num]) => {
+    if (t.includes(name)) mesesEncontrados.push({ name, num, pos: t.indexOf(name) });
+  });
+  mesesEncontrados.sort((a,b) => a.pos - b.pos);
+
+  if (mesesEncontrados.length >= 2) {
+    mes_inicio = mesesEncontrados[0].num;
+    mes_fim = mesesEncontrados[mesesEncontrados.length-1].num;
+  } else if (mesesEncontrados.length === 1) {
+    // Verifica se é "de X" ou "até X"
+    const m = mesesEncontrados[0].num;
+    if (t.match(/ate\s+/) && t.indexOf('ate') < t.indexOf(mesesEncontrados[0].name)) {
+      mes_fim = m;
+    } else {
+      mes_inicio = m;
+      mes_fim = m;
+    }
+  }
+
+  // Se não encontrou meses específicos, tenta "até [mês]" = do mês atual até esse mês
+  if (mes_inicio === null && mes_fim !== null) {
+    mes_inicio = new Date().getMonth();
+  }
+  // "de [mês] a [mês]" — já tratado acima
+
+  // Extrair nome da tarefa
+  // Remove palavras de frequência e tempo para pegar o nome limpo
+  let tarefa = text
+    .replace(/todo[s]?\s+(os\s+)?/gi,'')
+    .replace(/toda[s]?\s+(as\s+)?/gi,'')
+    .replace(/\bde\s+\w+\s+a[té]?\s+\w+/gi,'')
+    .replace(/\baté\s+\w+/gi,'')
+    .replace(/\bde\s+\w+/gi,'')
+    .replace(/\bdia\s+\d+\s+(de\s+cada\s+mes)?/gi,'')
+    .replace(/\bsegunda(-feira)?|\bterça(-feira)?|\bquarta(-feira)?|\bquinta(-feira)?|\bsexta(-feira)?|\bsábado|\bdomingo/gi,'')
+    .replace(/\bjaneiro|\bfevereiro|\bmarço|\babril|\bmaio|\bjunho|\bjulho|\bagosto|\bsetembro|\boutubro|\bnovembro|\bdezembro/gi,'')
+    .replace(/\b(tenho|faço|vou|tem|tenhos)\b/gi,'')
+    .replace(/\b(toda|todo|cada|mês|mes|semana|dia)\b/gi,'')
+    .replace(/[:;,]/g,'')
+    .replace(/\s+/g,' ')
+    .trim();
+
+  if (!tarefa) tarefa = 'Tarefa';
+
+  // Horário
+  let horario = null;
+  const horMatch = text.match(/(\d{1,2})[h:](\d{2})?/);
+  if (horMatch) horario = horMatch[0];
+
+  return {
+    tarefa,
+    dias_semana: dias_semana.length ? dias_semana : null,
+    dia_mes,
+    mes_inicio,
+    mes_fim,
+    horario
+  };
+}
+
+function sendAI() {
   const input = document.getElementById('ai-input');
   const text = input.value.trim();
   if (!text) return;
@@ -1149,44 +1095,42 @@ async function sendAI() {
   document.getElementById('ai-send').disabled = true;
   addAIMessage(text, 'user');
   showTyping();
-  try {
-    const prompt = `Você é um assistente que interpreta pedidos de tarefas recorrentes para um planner de 2026 e retorna JSON estruturado.
-O usuário disse: "${text}"
-Analise e retorne APENAS um JSON válido com esta estrutura:
-{"tarefa":"nome","dias_semana":[0..6]ou null,"dia_mes":N ou null,"mes_inicio":0..11 ou null,"mes_fim":0..11 ou null,"meses_especificos":[...]ou null,"horario":"9h"ou null}
-0=Dom,1=Seg,2=Ter,3=Qua,4=Qui,5=Sex,6=Sáb. Retorne APENAS o JSON, sem markdown.`;
-    const response = await fetch('https://api.anthropic.com/v1/messages', {
-      method: 'POST', headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ model: 'claude-sonnet-4-6', max_tokens: 400, messages: [{ role: 'user', content: prompt }] })
-    });
-    const data = await response.json();
-    const raw = data.content?.[0]?.text || '';
-    let parsed;
-    try { parsed = JSON.parse(raw.replace(/```json|```/g, '').trim()); } catch(e) {
-      hideTyping();
-      addAIMessage('Não entendi bem. Tente: <em>"Toda terça até novembro tenho academia"</em>', 'error');
-      document.getElementById('ai-send').disabled = false;
-      return;
+
+  // Simula processamento com pequeno delay
+  setTimeout(() => {
+    hideTyping();
+    try {
+      const parsed = parseTaskText(text);
+
+      // Validação básica
+      if (!parsed.dias_semana && !parsed.dia_mes) {
+        addAIMessage('Não identifiquei o dia da semana ou dia do mês. Tente algo como:<br>• <em>"Toda terça até novembro: academia"</em><br>• <em>"Dia 10 de cada mês: pagar contas"</em>', 'error');
+        document.getElementById('ai-send').disabled = false;
+        return;
+      }
+
+      const result = applyTaskToPlanner(parsed);
+      addAIMessage(result);
+    } catch(e) {
+      addAIMessage('Não consegui interpretar. Tente: <em>"Toda terça até novembro tenho academia"</em>', 'error');
     }
-    hideTyping();
-    const result = applyTaskToPlanner(parsed);
-    addAIMessage(result);
-  } catch(e) {
-    hideTyping();
-    addAIMessage('Erro ao conectar ao assistente.', 'error');
-  }
-  document.getElementById('ai-send').disabled = false;
+    document.getElementById('ai-send').disabled = false;
+  }, 700);
 }
 
 function applyTaskToPlanner(p) {
-  const { tarefa, dias_semana, dia_mes, mes_inicio, mes_fim, meses_especificos, horario } = p;
+  const { tarefa, dias_semana, dia_mes, mes_inicio, mes_fim, horario } = p;
   const label = horario ? `${tarefa} ${horario}` : tarefa;
-  let mStart = mes_inicio ?? 0;
-  let mEnd   = mes_fim    ?? 11;
+
+  // Define range de meses
+  let mStart = mes_inicio !== null ? mes_inicio : 0;
+  let mEnd   = mes_fim   !== null ? mes_fim   : 11;
+  if (mStart > mEnd) { const tmp = mStart; mStart = mEnd; mEnd = tmp; }
+
   let addedCount = 0;
   const addedMonths = new Set();
-  const targetMonths = meses_especificos ? meses_especificos : Array.from({length: mEnd - mStart + 1}, (_, i) => mStart + i);
-  targetMonths.forEach(m => {
+
+  for (let m = mStart; m <= mEnd; m++) {
     const daysInMonth = new Date(2026, m + 1, 0).getDate();
     for (let d = 1; d <= daysInMonth; d++) {
       const date = new Date(2026, m, d);
@@ -1205,33 +1149,27 @@ function applyTaskToPlanner(p) {
         addedMonths.add(m);
       }
     }
-  });
-  if (addedCount === 0) return `Não encontrei datas. Tente: <em>"Toda terça de janeiro a novembro tenho academia"</em>`;
+  }
+
+  if (addedCount === 0) {
+    return `Não encontrei datas no período informado. Verifique os meses e dias da semana mencionados.`;
+  }
+
   const mn = ['Jan','Fev','Mar','Abr','Mai','Jun','Jul','Ago','Set','Out','Nov','Dez'];
   const mList = [...addedMonths].map(m => mn[m]).join(', ');
   showToast('✅', 'Tarefas adicionadas!', `${addedCount} ocorrências de "${tarefa}" em: ${mList}`);
-  return `Adicionei <strong>${addedCount} ocorrências</strong> de <strong>${tarefa}</strong> nos meses: ${mList}.${horario ? ' Horário: '+horario:''}`;
+  return `Adicionei <strong>${addedCount} ocorrências</strong> de <strong>${tarefa}</strong> nos meses: ${mList}.${horario ? ' Horário: '+horario : ''}`;
 }
 
 // ============================================================
-// ===== SISTEMA DE NOTIFICAÇÕES =====
+// NOTIFICAÇÕES
 // ============================================================
-
 let notifPanelOpen = false;
 let notifConfig = {};
 let dailyCheckInterval = null;
 
-// --- Config ---
 function loadNotifConfig() {
-  return load('notif_config', {
-    daily: true,
-    metas: true,
-    mural: false,
-    time: '08:00',
-    advance: 1,
-    dismissed: [],
-    lastCheck: null
-  });
+  return load('notif_config', { daily: true, metas: true, mural: false, time: '08:00', advance: 1, dismissed: [], lastCheck: null });
 }
 
 function saveNotifConfig() {
@@ -1256,44 +1194,27 @@ function applyNotifConfig() {
   document.getElementById('notif-advance-select').value = String(notifConfig.advance ?? 1);
 }
 
-// --- Permission ---
 async function requestPermission() {
-  if (!('Notification' in window)) {
-    updatePermissionStatus('Seu navegador não suporta notificações.');
-    return;
-  }
+  if (!('Notification' in window)) { updatePermissionStatus('Seu navegador não suporta notificações.'); return; }
   const perm = await Notification.requestPermission();
-  updatePermissionStatus(null); // re-read
+  updatePermissionStatus(null);
   if (perm === 'granted') {
     showToast('🔔', 'Notificações ativadas!', 'Você receberá lembretes do planner.');
-    new Notification('Planner do Aluno 2026', { body: 'Notificações ativadas com sucesso! ✦', icon: 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><text y=".9em" font-size="90">📓</text></svg>' });
+    new Notification('Planner do Aluno 2026', { body: 'Notificações ativadas com sucesso! ✦' });
   }
 }
 
 function updatePermissionStatus(msg) {
   const el = document.getElementById('notif-permission-status');
   const btn = document.getElementById('notif-permission-btn');
-  if (!('Notification' in window)) {
-    el.textContent = '⚠️ Navegador não suporta notificações';
-    btn.disabled = true; return;
-  }
+  if (!('Notification' in window)) { el.textContent = '⚠️ Navegador não suporta notificações'; btn.disabled = true; return; }
   if (msg) { el.textContent = msg; return; }
   const perm = Notification.permission;
-  if (perm === 'granted') {
-    el.textContent = '✅ Notificações do navegador ativadas';
-    btn.textContent = '✅ Notificações ativas';
-    btn.disabled = true;
-  } else if (perm === 'denied') {
-    el.textContent = '❌ Bloqueado — habilite nas configurações do navegador';
-    btn.disabled = true;
-  } else {
-    el.textContent = 'clique para ativar lembretes mesmo com a aba fechada';
-    btn.disabled = false;
-    btn.textContent = '🔔 Ativar notificações do navegador';
-  }
+  if (perm === 'granted') { el.textContent = '✅ Notificações do navegador ativadas'; btn.textContent = '✅ Notificações ativas'; btn.disabled = true; }
+  else if (perm === 'denied') { el.textContent = '❌ Bloqueado — habilite nas configurações do navegador'; btn.disabled = true; }
+  else { el.textContent = 'clique para ativar lembretes mesmo com a aba fechada'; btn.disabled = false; btn.textContent = '🔔 Ativar notificações do navegador'; }
 }
 
-// --- Coleta eventos ---
 function collectTodayEvents(advance) {
   const today = new Date();
   const events = [];
@@ -1306,14 +1227,7 @@ function collectTodayEvents(advance) {
     const val = load(`plan_${m}_${day}`, '');
     if (val && val.trim()) {
       val.split('\n').filter(v => v.trim()).forEach(task => {
-        events.push({
-          id: `plan_${m}_${day}_${task}`,
-          type: 'task',
-          date: d,
-          label: task.trim(),
-          month: m, day,
-          daysAhead: i
-        });
+        events.push({ id: `plan_${m}_${day}_${task}`, type: 'task', date: d, label: task.trim(), month: m, day, daysAhead: i });
       });
     }
   }
@@ -1355,16 +1269,12 @@ function getActiveEvents() {
   return all.filter(e => !dismissed.includes(e.id));
 }
 
-// --- Renderiza aba HOJE ---
 function renderTodayTab() {
   const list = document.getElementById('notif-today-list');
   list.innerHTML = '';
   const events = getActiveEvents();
   if (!events.length) {
-    list.innerHTML = `<div class="notif-empty">
-      <div class="notif-empty-icon">🌟</div>
-      <div class="notif-empty-text">Nenhum aviso ativo.<br>Adicione tarefas no planner e elas aparecerão aqui.</div>
-    </div>`;
+    list.innerHTML = `<div class="notif-empty"><div class="notif-empty-icon">🌟</div><div class="notif-empty-text">Nenhum aviso ativo.<br>Adicione tarefas no planner e elas aparecerão aqui.</div></div>`;
     updateBadge(0); return;
   }
   updateBadge(events.length);
@@ -1390,7 +1300,6 @@ function renderTodayTab() {
   });
 }
 
-// --- Renderiza aba PRÓXIMAS ---
 function renderUpcomingTab() {
   const list = document.getElementById('notif-upcoming-list');
   list.innerHTML = '';
@@ -1410,10 +1319,7 @@ function renderUpcomingTab() {
     }
   }
   if (!upcoming.length) {
-    list.innerHTML = `<div class="notif-empty" style="flex:1;">
-      <div class="notif-empty-icon">📆</div>
-      <div class="notif-empty-text">Nenhuma tarefa nos próximos 30 dias.</div>
-    </div>`; return;
+    list.innerHTML = `<div class="notif-empty" style="flex:1;"><div class="notif-empty-icon">📆</div><div class="notif-empty-text">Nenhuma tarefa nos próximos 30 dias.</div></div>`; return;
   }
   upcoming.slice(0, 20).forEach(item => {
     const diffDays = Math.round((item.date - today) / 86400000);
@@ -1431,7 +1337,6 @@ function renderUpcomingTab() {
   });
 }
 
-// --- Dismiss ---
 function dismissEvent(id) {
   if (!notifConfig.dismissed) notifConfig.dismissed = [];
   if (!notifConfig.dismissed.includes(id)) notifConfig.dismissed.push(id);
@@ -1439,25 +1344,18 @@ function dismissEvent(id) {
   renderTodayTab();
 }
 
-// --- Badge ---
 function updateBadge(count) {
   const badge = document.getElementById('notif-badge');
-  if (count > 0) {
-    badge.textContent = count > 9 ? '9+' : String(count);
-    badge.classList.add('visible');
-  } else {
-    badge.classList.remove('visible');
-  }
+  if (count > 0) { badge.textContent = count > 9 ? '9+' : String(count); badge.classList.add('visible'); }
+  else { badge.classList.remove('visible'); }
 }
 
-// --- Panel toggle ---
 function toggleNotifPanel() {
   notifPanelOpen = !notifPanelOpen;
   document.getElementById('notif-panel').classList.toggle('hidden', !notifPanelOpen);
   if (notifPanelOpen) { renderTodayTab(); renderUpcomingTab(); }
 }
 
-// --- Tab switch ---
 function switchNotifTab(tab) {
   document.querySelectorAll('.notif-tab').forEach((el, i) => {
     const tabs = ['hoje','proximas','config'];
@@ -1469,21 +1367,15 @@ function switchNotifTab(tab) {
   if (tab === 'proximas') renderUpcomingTab();
 }
 
-// --- Browser Notification ---
 function sendBrowserNotif(title, body) {
   if (!('Notification' in window)) return;
   if (Notification.permission !== 'granted') return;
-  new Notification(title, {
-    body,
-    icon: 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><text y=".9em" font-size="90">📓</text></svg>',
-    badge: 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><text y=".9em" font-size="90">🔔</text></svg>'
-  });
+  new Notification(title, { body });
 }
 
-// --- Daily check ---
 function runDailyCheck() {
   const today = new Date().toDateString();
-  if (notifConfig.lastCheck === today) return; // já checou hoje
+  if (notifConfig.lastCheck === today) return;
   const events = getActiveEvents();
   if (!events.length) return;
   notifConfig.lastCheck = today;
@@ -1495,36 +1387,27 @@ function runDailyCheck() {
     showToast('📅', `${taskEvents.length} evento${taskEvents.length>1?'s':''} no planner`, taskEvents.map(e => e.label).slice(0,2).join(' • '));
   }
   const metaEv = events.filter(e => e.type === 'metas');
-  if (metaEv.length) {
-    showToast('🎯', 'Metas pendentes', metaEv[0].label);
-  }
+  if (metaEv.length) showToast('🎯', 'Metas pendentes', metaEv[0].label);
   updateBadge(events.length);
 }
 
-// --- Scheduled check (compara horário configurado) ---
 function scheduleCheck() {
   clearInterval(dailyCheckInterval);
   dailyCheckInterval = setInterval(() => {
     const [h, mn] = (notifConfig.time || '08:00').split(':').map(Number);
     const now = new Date();
-    if (now.getHours() === h && now.getMinutes() === mn) {
-      runDailyCheck();
-    }
-    // Atualiza badge a cada minuto
+    if (now.getHours() === h && now.getMinutes() === mn) runDailyCheck();
     updateBadge(getActiveEvents().length);
   }, 60000);
 }
 
-// --- INIT NOTIFICAÇÕES ---
 function initNotifications() {
   notifConfig = loadNotifConfig();
   applyNotifConfig();
   updatePermissionStatus(null);
-  // Checa ao abrir (com delay para a página carregar)
   setTimeout(() => {
     const events = getActiveEvents();
     updateBadge(events.length);
-    // Mostra toast de boas-vindas com eventos do dia se houver
     const todayEvs = events.filter(e => e.type === 'task' && e.daysAhead === 0);
     if (todayEvs.length) {
       setTimeout(() => {
@@ -1559,7 +1442,6 @@ function removeToast(toast) {
   toast.classList.add('removing');
   setTimeout(() => toast.remove(), 300);
 }
-
 </script>
 </body>
 </html>
